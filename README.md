@@ -24,6 +24,6 @@ To compute the F1 scores:
 1. Call `python retrieval_efficiency.py`  (edit the filenames in retrieval_efficiency.py)
 2. The outputs are already TREC_EVAL compatible, and further metrics can be computed by configuring trec eval if the need be.
 
-* The build file just checks lxml availability, and installs it if not present.
+The build file just checks lxml availability, and installs it if not present.
 
-* Files in the `files` folder are samples of the formats of files the present code is compatible with.
+Files in the `files` folder are samples of the formats of files the present code is compatible with.
