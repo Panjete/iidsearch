@@ -27,3 +27,7 @@ To compute the F1 scores:
 The build file just checks lxml availability, and installs it if not present.
 
 Files in the `files` folder are samples of the formats of files the present code is compatible with.
+
+## Computation 
+
+The Vanilla No Compression, No Encoding framework is able to construct the index of around a 2GB Corpus in just 982.55 seconds, and boasts an Average Query Retrieval Time of 1.276 seconds, with an Average Precision of 0.611!
