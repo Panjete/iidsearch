@@ -5,6 +5,7 @@ from q_10 import q10
 from q_01 import q01
 from q_11 import q11
 
+## TOP file for query processing
 aparser = argparse.ArgumentParser(description="Process filenames and flags")
 aparser.add_argument("queryfile", nargs=1)
 aparser.add_argument("resultfile", nargs=1)
@@ -19,6 +20,8 @@ dictfile = args.dictfile[0]
 
 [_, _, _, _, compression_flag, tokeniser_flag] = metaData(dictfile)
 
+
+### Based on compression and encoding version, use the appropriate handler
 if compression_flag == 0 and tokeniser_flag == 0:
     q00(queryfile, resultfile, indexfile, dictfile)
 elif compression_flag == 1 and tokeniser_flag == 0:

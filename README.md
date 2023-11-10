@@ -1,24 +1,29 @@
-## Inverted Index Construction, and Variable Byte Encoding
+## Inverted Index Construction, and BPE Tokenisation
 
 For implementational and algorithmic details, please refer the report "algorithmic_details.pdf"
 
-Note that the reader files have been constructed for the TREC-like datasets and queryfiles, and may need to be adopted for different file formats 
+Note that the reader files have been constructed for the TREC-like datasets and queryfiles, and may need to be adopted for different file formats. Signatures of functions have been commented to facilitate this.
+
+
 To create the index and the dictionary file:
 
-    bash invidx.sh <directoryname> <indexfile> <compressionFlag> <tokenizerFlag>
+1. Call  `bash invidx.sh [directoryname] [indexfile] [compressionFlag] [tokenizerFlag]`
+2. Calls `invidx_cons.py`, which reads the input files, learns BPE (if asked) and constructs the dictionay and the postings list.
+3. Compression Flag (0/1) denotes Variable Byte Encoding On/Off and BPE Tokeniser flag (0/1) denotes BPE Tokenisation On/Off
+4. `[directoryname]` is the directory path to the dataset whose index is being constructed, and `[indexfile]` is the name that will be generated for the output files.
+
 
 To search the built index:
 
-    bash tf_idf_search.sh <queryfile> <resultfile> <indexfile> <dictionary>
+1. Call `bash tf_idf_search.sh [queryfile] [resultfile] [indexfile] [dictionary]`
+2. Calls `top.py`, which uses a reader to figure out the compression and encoding strategies used in the `[indexfile]` and `[dictionary]`.
+3. Based on this, uses the relevant reader and query processing file to process and retrieve the queries.
 
 To compute the F1 scores:
-    # edit the filenames in retrieval_efficiency.py and 
-    python retrieval_efficiency.py
-
+   
+1. Call `python retrieval_efficiency.py`  (edit the filenames in retrieval_efficiency.py)
+2. The outputs are already TREC_EVAL compatible, and further metrics can be computed by configuring trec eval if the need be.
 
 * The build file just checks lxml availability, and installs it if not present.
 
-* The script file "invidx.sh" runs the appropriate function for the compression and tokenizer modes.
-
-* The script file "tf_idf_search.sh" invoked "top.py", which further checks the metaData and infers the compression and tokenizer modes.
-* Then, it redirects the control flow to the appropriate reader that parses the index file as required and computes the top100 for each query.
+* Files in the `files` folder are samples of the formats of files the present code is compatible with.

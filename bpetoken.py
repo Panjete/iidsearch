@@ -3,6 +3,7 @@ import re
 import os
 from lxml import etree
 
+## For learning a BPE Encoding from a corpus, and to tokenise the input texts and queries after learning
 
 ## get mapping key -> frequency mapping
 ## key is a tuple split on characters by default.
